@@ -9,10 +9,11 @@ python applications without having to
 rewrite the same load and write functions
 every time. 
 ## Installation
+```
 git clone git@github.com:martyni/autoconfig.git
 cd autoconfig
 pip install .
-
+```
 
 ## Usage
 Write your config either from an interactive terminal
