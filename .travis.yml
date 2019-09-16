@@ -8,9 +8,13 @@ python:
   - "3.8-dev"  # 3.8 development branch
   - "nightly"  # nightly build
 # command to install dependencies
+before_install:
+  - pip install git-pull-requests
 install:
   - pip install .
 # command to run tests
 script:
   - python setup.py test
 
+after_success:
+  - git pull-request
