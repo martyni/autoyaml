@@ -9,11 +9,6 @@ except ImportError:
 def __return_file_path(file_path, app):
     return os.path.expanduser(file_path.format(app))
 
-def __test__yaml_compatibility(config):
-    try:
-       load(config)
-    except:
-       pass
 
 def load_config(app, config_file='~/.{}'):
     """load yaml formatted config from a file
