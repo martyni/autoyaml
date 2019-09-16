@@ -1,4 +1,5 @@
-from distutils.core import setup
+from setuptools import setup, find_packages
+
 
 with open('version') as v:
     version = v.read().strip()
@@ -11,7 +12,8 @@ setup(
     name='autoconfig',
     version=version,
     install_requires=dependancies,
-    py_modules=['autoconfig',],
+    packages=find_packages(),
+    test_suite="tests",
     license='Creative Commons Attribution-Noncommercial-Share Alike license',
     long_description=open('README.md').read(),
 )

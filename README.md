@@ -45,5 +45,5 @@ class My_Class(object):
 
 
 if __name__ == "__main__":
-   my_class = My_class(**load_config('app_name'))
+   my_class = My_Class(**load_config('app_name'))
 ```
