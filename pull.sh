@@ -1,6 +1,5 @@
-echo  curl -H \
-  "Authorization: token  32fc1954d3604f60c1e1e65a7d15ea61bb18f50e"\
+curl -H \
+  "Authorization: token  afa7e54e1999c6f0a51ced7a6831113b3987a34a"\
   -X POST -d\
-  "{ \"title\":\"title\",\"head\":\"${TRAVIS_HEAD}\",\"base\":\"master\", \"body\": \"Hello world\", }"\
-  "https://api.github.com/repos/${TRAVIS_REPO_SLUG}/pulls"\
-
+  "{ \"title\":\"${TRAVIS_BRNACH}\",\"head\":\"${TRAVIS_BRANCH}\",\"base\":\"master\", \"body\": \"${TRAVIS_COMMIT_MESSAGE}\", }"\
+  "https://api.github.com/repos/${TRAVIS_REPO_SLUG}/pulls"
