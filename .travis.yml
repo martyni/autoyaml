@@ -12,4 +12,5 @@ script:
   - python setup.py test
 
 after_success:
+  - pwd
   - git pull-request
