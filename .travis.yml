@@ -13,4 +13,5 @@ script:
 
 after_success:
   - pwd
+  - env
   - git pull-request
