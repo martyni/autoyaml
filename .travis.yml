@@ -14,5 +14,6 @@ script:
 after_success:
   - pwd
   - env
+  - git config --list
   - git checkout $TRAVIS_BRANCH
   - git pull-request
