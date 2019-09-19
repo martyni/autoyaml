@@ -3,11 +3,9 @@ from setuptools import setup, find_packages
 
 PWD = pathlib.Path(__file__).parent
 README = ( PWD / "README.md").read_text()
-VERSION = "2019.9.19.1558"
+VERSION = "2019.9.19.1605"
 
 
-with open('requirements.txt') as deps:
-    dependancies = [line for line in deps.readlines()]
 
 
 
@@ -28,5 +26,5 @@ setup(
     packages=find_packages(exclude=["tests"],),
     package_data = {'':['*.txt', '*.md']},
     include_package_data=True,
-    install_requires=dependancies,
+    install_requires=["pyaml"],
 )
