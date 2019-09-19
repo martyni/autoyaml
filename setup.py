@@ -1,4 +1,4 @@
-import pathlib
+import pathli
 from setuptools import setup, find_packages
 
 PWD = pathlib.Path(__file__).parent
@@ -25,8 +25,8 @@ setup(
     classifiers=[
         "Programming Language :: Python :: 3.7",
     ],
-    packages=find_packages(exclude="tests",),
-    package_data = {'':['*.txt', '*.md','version']},
+    packages=find_packages(exclude=["tests"],),
+    package_data = {'':['*.txt', '*.md']},
     include_package_data=True,
     install_requires=dependancies,
 )
