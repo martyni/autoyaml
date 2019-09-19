@@ -1,4 +1,4 @@
-# autoconfig because config should be easy
+# autoyaml because config should be easy
 Autoconfig is a config generator that takes
 a dictionary, writes it to a file and loads it
 back as a dictionary. 
@@ -11,8 +11,8 @@ rewrite the same IO functions every time.
 
 ## Installation
 ```
-git clone git@github.com:martyni/autoconfig.git
-cd autoconfig
+git clone git@github.com:martyni/autoyaml.git
+cd autoyaml
 pip install .
 ```
 
@@ -20,7 +20,7 @@ pip install .
 Write your config either from an interactive terminal
 or from a script
 ```
-from autoconfig import write_config
+from autoyaml import write_config
 
 conf = {
    'parameter1': 1,
@@ -33,7 +33,7 @@ write_config(conf,application_name)
 ```
 Load your config from another python application
 ```
-from autoconfig import load_config
+from autoyaml import load_config
 
 class My_Class(object):
    def __init__(self, **kwargs):

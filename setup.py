@@ -12,19 +12,18 @@ with open('requirements.txt') as deps:
 
 
 setup(
-    name='autoconfig',
+    name='autoyaml',
     test_suite="tests",
     version=VERSION,
     description="Load and save config files for python projects",
     long_description=README,
     long_description_content_type="text/markdown",
-    url="https://github.com/martyni/autoconfig",
-    author="Martyni",
+    url="https://github.com/martyni/autoyaml",
+    author="martyni",
     author_email="martynjamespratt@gmail.com",
     license='Creative Commons Attribution-Noncommercial-Share Alike license',
     classifiers=[
-        "Programming Language :: Python :: 3",
-        "Programming Language :: Python :: 3.4",
+        "Programming Language :: Python :: 3.7",
     ],
     packages=find_packages(exclude="tests",),
     include_package_data=True,
