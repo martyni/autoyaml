@@ -7,6 +7,7 @@ The aim of this project is to standardise the
 way python projects create and feed parameters into 
 python applications without having to 
 rewrite the same IO functions every time. 
+
 ## Installation
 ```
 git clone git@github.com:martyni/autoconfig.git
