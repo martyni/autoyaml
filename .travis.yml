@@ -1,15 +1,19 @@
 language: python
 python:
-  - "3.4"
-  - "3.5"
-  - "3.6"      # current default Python on Travis CI
-  - "3.7"
-  - "3.7-dev"  # 3.7 development branch
-  - "3.8-dev"  # 3.8 development branch
-  - "nightly"  # nightly build
-# command to install dependencies
+- '3.6'
+- nightly
+before_install:
+- pip install git-pull-request
 install:
-  - pip install .
-# command to run tests
+- pip install .
 script:
-  - python setup.py test
+- python setup.py test
+after_success:
+- pwd
+- env
+- git config --list
+- git checkout $TRAVIS_BRANCH
+- "./pull.sh"
+env:
+  global:
+    secure: E9DnWnYdrok7zCK5K7YtkdL1Cp7MItbJnPtHQOugA5TKAxtxwlSzVqucKN3h9sLTmQGJq9kmhNRlQmAMstTPTN9Qfb59IlZ5/vO7CEkg3DbhQ6R/71u0Zg4U+WlrOHSW5kGcLKPLNdcj7aEap5nHFloF3jtkA/bLC4W/WlXo8El4wIRU4vgEVZ2YwzSso41OCizFTiLi4CUynanzWyvqh/YiUkOveWTKTHHhOiNBuR0RLldPmmlZ6FJ1W51iuEEP+XsOo/uuWgAwicOHNRF01f8NYB4pOnS3UfDRM+dIzxTE07O+I+wjwc2J2cHS6TLHydw1aRQhSfQEV3VUYzny3VNHhjBbFnGZqib/R8rhMwEnuqLQpIXpI+npTDDfcr/snqaiOVGRfuH6Fhcv44yNylRzbmE4SAoaW/57v4nNnnkWwoTEmdgRkFyYK10WUHCsVdQMcUkTD03u7yVU8SjjZd4ZPSEsWcSMI9280TgUml+3WphYC+zAOzpBmLg46+d64YPvALyOo3U0WZGv3KwbZsYz0ytBJu3jJWIs9Pg5RIeAvFFXeNUDmJkvLIptf+jIVSUeBBe5h+GB5oYyFZO/EQTbKaUT+udCWs68VW7DUso4f8IQXy01wXY05lPcHyPu8SmqOpLyLNptIOxXsqkGyrZPP/fHCnmVk8NeHgpOfZU=
