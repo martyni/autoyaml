@@ -1,9 +1,9 @@
-import pathli
+import pathlib
 from setuptools import setup, find_packages
 
 PWD = pathlib.Path(__file__).parent
 README = ( PWD / "README.md").read_text()
-VERSION = ( PWD / "version").read_text().strip() 
+VERSION = "2019.9.19.1558"
 
 
 with open('requirements.txt') as deps:
