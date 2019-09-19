@@ -3,7 +3,7 @@ import tempfile
 import string
 import os
 from random import choice, randint
-from autoconfig import load_config, write_config
+from autoyaml import load_config, write_config
 
 
 def random_string(stringLength=10):
