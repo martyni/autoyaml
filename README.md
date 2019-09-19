@@ -1,13 +1,14 @@
 # autoconfig because config should be easy
-Auto config is a config generator that takes
+Autoconfig is a config generator that takes
 a dictionary, writes it to a file and loads it
 back as a dictionary. 
 
 The aim of this project is to standardise the
-way I create and feed parameters into my 
+way python projects create and feed parameters into 
 python applications without having to 
-rewrite the same load and write functions
-every time. 
+rewrite the same IO functions every time. 
+
+
 ## Installation
 ```
 git clone git@github.com:martyni/autoconfig.git

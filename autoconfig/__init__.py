@@ -7,6 +7,9 @@ except ImportError:
 
 
 def __return_file_path(file_path, app):
+    """
+    Expands the ~/ into current users home directory
+    """
     return os.path.expanduser(file_path.format(app))
 
 
