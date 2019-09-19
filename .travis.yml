@@ -2,17 +2,12 @@ language: python
 python:
 - '3.6'
 - nightly
-before_install:
-- pip install git-pull-request
 install:
 - pip install .
 script:
 - python setup.py test
 after_success:
-- pwd
 - env
-- git config --list
-- git checkout $TRAVIS_BRANCH
 - "./pull.sh"
 env:
   global:
