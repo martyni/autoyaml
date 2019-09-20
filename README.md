@@ -11,9 +11,7 @@ rewrite the same IO functions every time.
 
 ## Installation
 ```
-git clone git@github.com:martyni/autoyaml.git
-cd autoyaml
-pip install .
+pip install autoyaml
 ```
 
 ## Usage
