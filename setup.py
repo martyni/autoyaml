@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 
 PWD = pathlib.Path(__file__).parent
 README = ( PWD / "README.md").read_text()
-VERSION = "2019.9.23.933"
+VERSION = "2019.9.23.950"
 
 
 
@@ -19,7 +19,7 @@ setup(
     url="https://github.com/martyni/autoyaml",
     author="martyni",
     author_email="martynjamespratt@gmail.com",
-    license='Creative Commons Attribution-Noncommercial-Share Alike license',
+    license='MIT',
     classifiers=[
         "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3.6",
