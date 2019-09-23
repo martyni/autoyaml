@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 
 PWD = pathlib.Path(__file__).parent
 README = ( PWD / "README.md").read_text()
-VERSION = "2019.9.20.1516"
+VERSION = "2019.9.23.933"
 
 
 
@@ -22,6 +22,8 @@ setup(
     license='Creative Commons Attribution-Noncommercial-Share Alike license',
     classifiers=[
         "Programming Language :: Python :: 3.7",
+        "Programming Language :: Python :: 3.6",
+        "Programming Language :: Python :: 3.5",
     ],
     packages=find_packages(exclude=["tests"],),
     package_data = {'':['*.txt', '*.md']},
