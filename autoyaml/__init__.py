@@ -1,3 +1,4 @@
+from .encryptor import encrypt, decrypt
 import os
 from yaml import load, dump
 try:

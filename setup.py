@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 
 PWD = pathlib.Path(__file__).parent
 README = ( PWD / "README.md").read_text()
-VERSION = "2019.9.23.950"
+VERSION = "2020.2.3.1648"
 
 
 
