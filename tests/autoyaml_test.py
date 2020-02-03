@@ -4,16 +4,15 @@ import string
 import os
 from random import choice, randint
 from autoyaml import load_config, write_config
+from autoyaml.encryptor import encrypt, decrypt
 
-
-def random_string(stringLength=10):
+def random_string(stringLength=10, selection=string.ascii_lowercase):
     """Generate a random string of fixed length """
-    letters = string.ascii_lowercase
-    return ''.join(choice(letters) for i in range(stringLength))
+    return ''.join(choice(selection) for i in range(stringLength))
 
 
 
-class TestStringMethods(unittest.TestCase):
+class TestAutoyamlMethods(unittest.TestCase):
     
     def writer(self, name):
         file_path = os.path.expanduser('~/.{}'.format(name))
@@ -40,6 +39,24 @@ class TestStringMethods(unittest.TestCase):
            read_str = tmp.read()
            self.assertEqual(test_str, read_str)
         os.remove(fname)
+
+class TestEncryptorMethods(unittest.TestCase):
+    file_name = '/tmp/test'
+    contents  = random_string()
+    password  = random_string()
+    salt      = random_string(selection='0123456789')
+    
+    def test_a_encrypt(self):
+       with open(self.file_name,'w') as test_file:
+          test_file.write(self.contents)
+       encrypt(self.file_name, self.password, self.salt)
+       with open(self.file_name) as test_file:
+          self.assertNotEqual(self.contents, test_file.read())
+
+    def test_b_decrypt(self):
+       decrypt(self.file_name, self.password, self.salt)
+       with open(self.file_name) as test_file:
+          self.assertEqual(self.contents, test_file.read())
 
 if __name__ == '__main__':
     unittest.main()
