@@ -84,6 +84,7 @@ def write_config(config, app, config_file='~/.{}', overwrite=True, encrypted=Fal
                 default_flow_style=False,
                 explicit_start=True
             )
+       return current_config
     else:
        with open(config_filename, 'wb') as config_file:
             contents = encrypt_string(
@@ -92,5 +93,4 @@ def write_config(config, app, config_file='~/.{}', overwrite=True, encrypted=Fal
                              config_filename
                           )
             config_file.write(contents)
-        
-    return current_config
+       return {key: '<hidden>' for key in current_config} 
