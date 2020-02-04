@@ -68,9 +68,13 @@ def write_config(config, app, config_file='~/.{}', overwrite=True, encrypted=Fal
     --- 
     config: true
     """
+    password_cache = {}
+    def tmp_password(password_function=password_function):
+        password_cache['password'] = password_function()
+        return password_function()
     suffix = '' if not encrypted else '.enc'
     config_filename = __return_file_path(config_file, app) + suffix
-    current_config = load_config(app, config_file)
+    current_config = load_config(app, config_file, password_function=tmp_password)
     if overwrite:
         current_config.update(config)
     else:
@@ -89,7 +93,7 @@ def write_config(config, app, config_file='~/.{}', overwrite=True, encrypted=Fal
        with open(config_filename, 'wb') as config_file:
             contents = encrypt_string(
                              dump(current_config),
-                             password_function(),
+                             password_cache.get('password') or password_function(),
                              config_filename
                           )
             config_file.write(contents)
