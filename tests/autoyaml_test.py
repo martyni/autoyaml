@@ -31,7 +31,7 @@ class TestAutoyamlMethods(unittest.TestCase):
         return file_path
         
     def password_function(self):
-        return "12345"
+        return self.password
 
     def test_load_config(self):
         fname = self.writer(self.app)

@@ -41,7 +41,7 @@ def load_config(app, config_file='~/.{}', password_function=getpass):
             
             with open(config_filename) as config:
                raw_contents = config.read()
-               contents = decrypt_string(bytes(raw_contents,'utf-8')[2:-1], password_function(), config_filename)
+               contents = decrypt_string(bytes(raw_contents,'utf-8'), password_function(), config_filename)
                return load(contents, Loader=Loader)
         except FileNotFoundError:
            return {}
@@ -76,20 +76,21 @@ def write_config(config, app, config_file='~/.{}', overwrite=True, encrypted=Fal
     else:
         config.update(current_config)
         current_config = config
-    with open(config_filename, 'w+') as config_file:
-        if not encrypted:
+    if not encrypted:
+       with open(config_filename, 'w+') as config_file:
             dump(
                 current_config,
                 config_file,
                 default_flow_style=False,
                 explicit_start=True
             )
-        else:
-            contents = str(encrypt_string(
+    else:
+       with open(config_filename, 'wb') as config_file:
+            contents = encrypt_string(
                              dump(current_config),
                              password_function(),
                              config_filename
-                          ))
+                          )
             config_file.write(contents)
         
     return current_config
