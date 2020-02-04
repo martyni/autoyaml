@@ -1,5 +1,6 @@
-from .encryptor import encrypt, decrypt
+from .encryptor import encrypt_string, decrypt_string
 import os
+from getpass import getpass
 from yaml import load, dump
 try:
     from yaml import CLoader as Loader, CDumper as Dumper
@@ -14,7 +15,7 @@ def __return_file_path(file_path, app):
     return os.path.expanduser(file_path.format(app))
 
 
-def load_config(app, config_file='~/.{}'):
+def load_config(app, config_file='~/.{}', password_function=getpass):
     """load yaml formatted config from a file
 
     arguments:
@@ -35,10 +36,18 @@ def load_config(app, config_file='~/.{}'):
         with open(config_filename) as config:
             return load(config.read(), Loader=Loader)
     except FileNotFoundError:
-        return {}
+        try:
+            config_filename += ".enc"
+            
+            with open(config_filename) as config:
+               raw_contents = config.read()
+               contents = decrypt_string(bytes(raw_contents,'utf-8'), password_function(), config_filename)
+               return load(contents, Loader=Loader)
+        except FileNotFoundError:
+           return {}
 
 
-def write_config(config, app, config_file='~/.{}', overwrite=True):
+def write_config(config, app, config_file='~/.{}', overwrite=True, encrypted=False, password_function=getpass):
     """write yaml formatted config to a file
 
     arguments:
@@ -59,18 +68,29 @@ def write_config(config, app, config_file='~/.{}', overwrite=True):
     --- 
     config: true
     """
-    config_filename = __return_file_path(config_file, app)
+    suffix = '' if not encrypted else '.enc'
+    config_filename = __return_file_path(config_file, app) + suffix
     current_config = load_config(app, config_file)
     if overwrite:
         current_config.update(config)
     else:
         config.update(current_config)
         current_config = config
-    with open(config_filename, 'w+') as config_file:
-        dump(
-            current_config,
-            config_file,
-            default_flow_style=False,
-            explicit_start=True
-        )
+    if not encrypted:
+       with open(config_filename, 'w+') as config_file:
+            dump(
+                current_config,
+                config_file,
+                default_flow_style=False,
+                explicit_start=True
+            )
+    else:
+       with open(config_filename, 'wb') as config_file:
+            contents = encrypt_string(
+                             dump(current_config),
+                             password_function(),
+                             config_filename
+                          )
+            config_file.write(contents)
+        
     return current_config
