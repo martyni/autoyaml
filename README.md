@@ -56,7 +56,7 @@ conf = {
    'secret_key': getpass('Secret Key? ')
 }
 
-application_name = 'app_name'
+application_name = 'app_name1'
 
 write_config(conf, application_name, encrypted=True)
 
@@ -83,7 +83,7 @@ from autoyaml import load_config, write_config
 def BAD_PASSWORD_FUNCTION():
    return 'password123'
 
-write_config({'foo':'bar'},'app_name3', encrypted=True, password_function=BAD_PASSWORD_FUNCTION)
+write_config({'foo':'bar'},'app_name2', encrypted=True, password_function=BAD_PASSWORD_FUNCTION)
 
 print(load_config('app_name3', password_function=BAD_PASSWORD_FUNCTION)
 ```
