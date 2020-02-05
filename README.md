@@ -47,3 +47,43 @@ class My_Class(object):
 if __name__ == "__main__":
    my_class = My_Class(**load_config('app_name'))
 ```
+## Password Protected Encryption
+```
+from autoyaml import write_config
+from getpass import getpass
+
+conf = {
+   'secret_key': getpass('Secret Key? ')
+}
+
+application_name = 'app_name1'
+
+write_config(conf, application_name, encrypted=True)
+
+```
+## Loads the same but requires password input by default
+```
+from autoyaml import load_config
+
+class My_Class(object):
+   def __init__(self, **kwargs):
+      self.secret_key = kwargs['secret_key']
+      self.show_parameters()
+
+   def show_parameters(self):
+      print('the last character of your secret it {}'.format(self.secret_key[-1]))
+
+
+if __name__ == "__main__":
+   my_class = My_Class(**load_config('app_name1'))
+```
+## Create a custom password function 
+```
+from autoyaml import load_config, write_config
+def BAD_PASSWORD_FUNCTION():
+   return 'password123'
+
+write_config({'foo':'bar'},'app_name2', encrypted=True, password_function=BAD_PASSWORD_FUNCTION)
+
+print(load_config('app_name3', password_function=BAD_PASSWORD_FUNCTION)
+```

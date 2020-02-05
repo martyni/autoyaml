@@ -47,6 +47,10 @@ class TestAutoyamlMethods(unittest.TestCase):
     def test_b_decrypt_config(self):
         loaded_config = load_config(self.enc_app, password_function=self.password_function) 
         self.assertEqual(loaded_config, self.enc_config)
+        loaded_config["extra_field"] = random_string()
+        write_config(loaded_config, self.enc_app, encrypted=True, password_function=self.password_function)
+        loaded_config2 = load_config(self.enc_app, password_function=self.password_function) 
+        self.assertEqual(loaded_config, loaded_config2)
         os.remove(self.writer(self.enc_app, encrypted=True))
 
     def test_write_config(self):
