@@ -1,2 +1,2 @@
 pyaml==19.4.1
-cryptography==3.2
+cryptography==3.3.2
