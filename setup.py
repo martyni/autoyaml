@@ -28,5 +28,5 @@ setup(
     packages=find_packages(exclude=["tests"],),
     package_data = {'':['*.txt', '*.md']},
     include_package_data=True,
-    install_requires=["pyaml","cryptography>=3.2"],
+    install_requires=["pyaml","cryptography>=3.2","urllib3<2.0"],
 )
