@@ -1,13 +1,12 @@
 language: python
 python:
-- '3.5'
-- '3.6'
-- '3.7'
+- '3.12'
+- '3.11'
 - nightly
 install:
 - pip install .
 script:
-- python setup.py test
+- python -m tests.autoyaml_test
 after_success:
 - env
 - ci/pull.sh
@@ -21,4 +20,4 @@ deploy:
     secure: 1EqZu19nYEx9i4mr+NTQj/H8WGo2QXL7w4X6z5BbgeJ8muIo29xhF921eCjkr0MnrlBQCzogi1UBEm8TkCGZAOXoxR3DD/ARaPWQDAu6lmuHhV2bLRrsieVMRsIcgXwrsXok/LCS+PlHsRcveGes1HuP0+IR6Szl+oyaen1jb3gU3fX/64jglAaqh2OQILMTZB1XXV+ldcHWfVFteo3BjqG19nRzfvrw7fgVCHmn6WsWqYi/VYPh9y4kapP4eddq3FZjg/n46jD8iJhZVlOayjTYc57mc0iMmcSOPt2TcBMWMYJUD8BsRvW46tsCEPa4EGdmdDXkLm2NTo+Vl6cqqMNTe72XDvpeKkwSZ4uKKsUrkVH7BEQjxjFgpJVEbZd+yrmKx8l2qmXJ3vSEN/u9igLzDe+Bk2uqG7rgU+Vj7e/v+ggHqFqMtlE0PYJ64dosKoi8JwcueZxjqDhplYvX+6fuQL3TCJ2+KspORr4aW3gFTlL0zvOhLuNYjdi52aTvpMzdGYHWREJeMm/hDQBuYHGH8k1Cj3tmEblBQfSnOunAR5nBiOrL8J/7e0euUac4fbjVblpkUVKjnprgog7PSmdbRGTb/1f0ZuC4VG8AI5cssOotwpnCpJMdBNyFzjg90mGPbBvC1R+ITGW+mn5oLE468MSIMPfJXUYtmjP7rIE=
   on:
    branch: master
-   python: '3.6' 
+   python: '3.12' 
