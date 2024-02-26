@@ -20,7 +20,7 @@ def load_config(app, config_file='~/.{}', password_function=getpass):
 
     arguments:
     appname -- name of the app being loaded
-    
+
     keyword arguments:
     config_file -- path to the actual config file. Default "~/.{}"
 
@@ -28,7 +28,7 @@ def load_config(app, config_file='~/.{}', password_function=getpass):
     file in the users home directory with that appname
     e.g
     load_config("app")
-    will look in ~/.app and return a dictionary if the contents are 
+    will look in ~/.app and return a dictionary if the contents are
     yaml formatted
     """
     config_filename = __return_file_path(config_file, app)
@@ -38,7 +38,7 @@ def load_config(app, config_file='~/.{}', password_function=getpass):
     except FileNotFoundError:
         try:
             config_filename += ".enc"
-            
+
             with open(config_filename) as config:
                raw_contents = config.read()
                contents = decrypt_string(bytes(raw_contents,'utf-8'), password_function(), config_filename)
@@ -53,19 +53,19 @@ def write_config(config, app, config_file='~/.{}', overwrite=True, encrypted=Fal
     arguments:
     config  -- dictionary of config parameters
     appname -- name of the app the config is written for
-    
+
     keyword arguments:
     config_file -- path to the actual config file. Default "~/.{}"
-    overwrite   -- whether the config in the file should be 
-                   overwritten or if only new parameters should 
-                   be added. Default True 
+    overwrite   -- whether the config in the file should be
+                   overwritten or if only new parameters should
+                   be added. Default True
 
     This function by defualt will write to a hidden
     file in the users home directory with that appname
     e.g
     write_config({"config": True}, "app")
     will write in ~/.app the dictionary in yaml format
-    --- 
+    ---
     config: true
     """
     password_cache = {}
@@ -97,4 +97,4 @@ def write_config(config, app, config_file='~/.{}', overwrite=True, encrypted=Fal
                              config_filename
                           )
             config_file.write(contents)
-       return {key: '<hidden>' for key in current_config} 
+       return {key: '<hidden>' for key in current_config}
